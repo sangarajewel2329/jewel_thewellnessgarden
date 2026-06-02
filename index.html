@@ -17,7 +17,6 @@
             padding: 0;
             width: 100%;
             overflow-x: hidden;
-            /* 🔥 FIX: stops side clipping */
         }
 
         body {
@@ -26,11 +25,9 @@
             color: #0b2b3a;
         }
 
-        /* HERO UPDATED FOR FULL VIDEO COVER */
         .hero {
             height: 100vh;
             width: 100vw;
-            /* 🔥 FIX: forces full viewport width */
             position: relative;
             overflow: hidden;
             display: flex;
@@ -40,21 +37,16 @@
             color: white;
         }
 
-        /* VIDEO BACKGROUND FIXED */
         .hero-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
-            /* 🔥 FULL WIDTH FIX */
             height: 100vh;
-            /* 🔥 FULL HEIGHT FIX */
             object-fit: cover;
-            object-position: center;
             z-index: -2;
         }
 
-        /* DARK OVERLAY */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -85,12 +77,10 @@
             background: #0097a7;
         }
 
-        /* SECTIONS */
         .section {
             padding: 90px 10%;
         }
 
-        /* TITLE */
         .title {
             text-align: center;
             font-family: "Playfair Display";
@@ -98,19 +88,14 @@
             margin-bottom: 40px;
         }
 
-        /* ABOUT */
-        /* ABOUT */
         .about {
             display: flex;
             gap: 40px;
             align-items: center;
-            width: 100%;
         }
 
         .about img {
             width: 45%;
-            height: auto;
-            display: block;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
@@ -119,49 +104,12 @@
             flex: 1;
         }
 
-        /* MOBILE FIX */
-
-        @media screen and (max-width: 768px) {
-
-            .section {
-                padding: 60px 20px;
-            }
-
-            .about {
-                display: block !important;
-            }
-
-            .about img {
-                width: 100% !important;
-                max-width: 100%;
-                margin-bottom: 25px;
-            }
-
-            .about div {
-                width: 100%;
-            }
-
-            .about p {
-                width: 100%;
-                margin: 0;
-                text-align: justify;
-                line-height: 1.9;
-                font-size: 1rem;
-            }
-
-            .title {
-                margin-bottom: 20px;
-            }
-        }
-
-        /* GRID */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
-        /* BIGGER, CLEANER CARDS */
         .card {
             border-radius: 18px;
             overflow: hidden;
@@ -170,20 +118,16 @@
             transition: 0.4s ease;
         }
 
-        /* hover effect stays premium */
         .card:hover {
             transform: translateY(-12px) scale(1.02);
         }
 
-        /* 🔥 THIS MAKES THEM LOOK BIG + CINEMATIC */
         .card img {
             width: 100%;
             height: 320px;
-            /* was 200px → now BIGGER */
             object-fit: cover;
         }
 
-        /* LOVE BOX */
         .love-box {
             max-width: 900px;
             margin: auto;
@@ -195,7 +139,6 @@
             font-size: 1.1rem;
         }
 
-        /* VIDEO ROW FIX */
         .video-row {
             display: flex;
             gap: 20px;
@@ -215,18 +158,14 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
         }
 
-        /* MESSAGE */
         .message {
             text-align: center;
             background: linear-gradient(135deg, #00bcd4, #006d77);
             color: white;
             padding: 90px 25px;
             border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
         }
 
-        /* typing text */
         #loveText {
             font-size: 1.2rem;
             line-height: 2;
@@ -235,7 +174,6 @@
             min-height: 120px;
         }
 
-        /* glowing signature */
         .signature {
             margin-top: 20px;
             font-family: "Playfair Display";
@@ -255,189 +193,81 @@
             }
         }
 
-        /* =========================
-MOBILE FIXES ONLY
-Add right before 
-    </style>
-    ========================= */
+        .bubble {
+            position: fixed;
+            bottom: -20px;
+            background: #00bcd4;
+            border-radius: 50%;
+            animation: float 7s linear infinite;
+        }
 
-    @media screen and (max-width: 768px) {
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
 
-    ```
-    /* Better spacing on phones */
-    .section {
-    padding: 60px 20px;
-    }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
 
-    /* Hero text */
-    .hero h1 {
-    font-size: 2.5rem;
-    }
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #003845;
+            color: white;
+        }
 
-    /* ABOUT SECTION */
-    .about {
-    display: block !important;
-    }
+        /* SINGLE CLEAN MOBILE BLOCK (FIXED DUPLICATES) */
+        @media screen and (max-width: 768px) {
 
-    .about img {
-    width: 100% !important;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 25px auto;
-    }
+            .section {
+                padding: 60px 20px;
+            }
 
-    .about div {
-    width: 100%;
-    }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
 
-    .about p {
-    width: 100%;
-    text-align: justify;
-    line-height: 1.9;
-    margin: 0;
-    }
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
 
-    /* Magazine cards */
-    .grid {
-    grid-template-columns: 1fr;
-    }
+            .about img {
+                width: 100%;
+                max-width: 100%;
+            }
 
-    .card img {
-    height: auto;
-    }
+            .grid {
+                grid-template-columns: 1fr;
+            }
 
-    /* Videos */
-    .video-box {
-    min-width: 100%;
-    }
+            .card img {
+                height: auto;
+            }
 
-    /* Message section */
-    .message {
-    padding: 60px 20px;
-    }
+            .video-box {
+                min-width: 100%;
+            }
 
-    #loveText {
-    font-size: 1rem;
-    min-height: auto;
-    }
-    ```
+            .message {
+                padding: 60px 20px;
+            }
 
-    }
-
-
-    /* fade-in animation */
-    .message.reveal {
-    animation: fadeUp 1.5s ease forwards;
-    }
-
-    @keyframes fadeUp {
-    from {
-    opacity: 0;
-    transform: translateY(40px);
-    }
-
-    to {
-    opacity: 1;
-    transform: translateY(0);
-    }
-    }
-
-    /* FOOTER */
-    footer {
-    text-align: center;
-    padding: 30px;
-    background: #003845;
-    color: white;
-    }
-
-    /* BUBBLES */
-    .bubble {
-    position: fixed;
-    bottom: -20px;
-    background: #00bcd4;
-    border-radius: 50%;
-    animation: float 7s linear infinite;
-    }
-
-    @keyframes float {
-    0% {
-    transform: translateY(0);
-    opacity: 0.7
-    }
-
-    100% {
-    transform: translateY(-100vh);
-    opacity: 0
-    }
-
-    @media screen and (max-width: 768px) {
-
-    ```
-    .section {
-    padding: 60px 20px;
-    }
-
-    .hero h1 {
-    font-size: 2.5rem;
-    }
-
-    .about {
-    display: block !important;
-    }
-
-    .about img {
-    width: 100% !important;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 25px auto;
-    }
-
-    .about div {
-    width: 100%;
-    }
-
-    .about p {
-    width: 100%;
-    text-align: justify;
-    line-height: 1.9;
-    margin: 0;
-    }
-
-    .grid {
-    grid-template-columns: 1fr;
-    }
-
-    .card img {
-    height: auto;
-    }
-
-    .video-box {
-    min-width: 100%;
-    }
-
-    .message {
-    padding: 60px 20px;
-    }
-
-    #loveText {
-    font-size: 1rem;
-    min-height: auto;
-    }
-
-
-    }
-
-    }
+            #loveText {
+                font-size: 1rem;
+                min-height: auto;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- HERO -->
     <div class="hero">
-
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="videos/video3.mp4" type="video/mp4">
         </video>
@@ -451,10 +281,8 @@ Add right before
         </div>
     </div>
 
-    <!-- ABOUT -->
     <div class="section about">
         <img src="images/angel2.jpg">
-
         <div>
             <h2 class="title">About Angel 💙</h2>
             <p>Haaaah!(sighs) Not even words can describe her. Her name says it all. She's an absolute angel in human
@@ -483,12 +311,8 @@ Add right before
             <p>And maybe that is what makes it special… she does not try to be unforgettable. She just is.</p>
         </div>
     </div>
-
-
-    <!-- MEMORIES -->
     <div class="section">
         <h2 class="title">Magazine 🌊</h2>
-
         <div class="grid">
             <div class="card"><img src="images/angel4.jpg"></div>
             <div class="card"><img src="images/angel5.jpg"></div>
@@ -499,39 +323,16 @@ Add right before
         </div>
     </div>
 
-    <!-- VIDEOS -->
-    <div class="section">
-        <h2 class="title">She looks just like a dream 🎥</h2>
-
-        <div class="video-row">
-            <div class="video-box">
-                <video controls>
-                    <source src="videos/video1.mp4">
-                </video>
-            </div>
-
-            <div class="video-box">
-                <video controls>
-                    <source src="videos/video2.mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-
-    <!-- MESSAGE -->
     <div class="section message" id="messageBox">
         <h2>Message 💌</h2>
-
         <p id="loveText"></p>
-
         <h3 class="signature">— Always yours 💙</h3>
     </div>
-    <!-- FOOTER -->
+
     <footer>
-        Made with calm love . Clear definition of how I feel about her 🌊💙 — 2026
+        Made with calm love 🌊💙 — 2026
     </footer>
 
-    <!-- AUDIO -->
     <audio id="music" loop>
         <source src="music/Frank Ocean Moon River.mp3">
         <source src="music/Sonder What You Heard.mp3">
@@ -564,21 +365,19 @@ Add right before
             document.body.appendChild(b);
             setTimeout(() => b.remove(), 7000);
         }, 400);
+
         const loveMessage =
-            "Some people feel like peace without trying. Angel is that kind of presence — quiet, warm, and unforgettable.";
+            "Some people feel like peace without trying. Angel is that kind of presence.";
 
         let j = 0;
         function typeLove() {
             if (j < loveMessage.length) {
-                document.getElementById("loveText").innerHTML += loveMessage[j];
-                j++;
+                document.getElementById("loveText").innerHTML += loveMessage[j++];
                 setTimeout(typeLove, 35);
             }
         }
 
-        /* trigger when page loads */
         window.addEventListener("load", () => {
-            document.getElementById("messageBox").classList.add("reveal");
             setTimeout(typeLove, 800);
         });
     </script>
