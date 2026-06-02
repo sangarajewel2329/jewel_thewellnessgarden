@@ -99,28 +99,42 @@
         }
 
         /* ABOUT */
+        /* ABOUT */
         .about {
             display: flex;
             gap: 40px;
             align-items: center;
+            width: 100%;
         }
 
         .about img {
-            width: 50%;
+            width: 45%;
+            height: auto;
+            display: block;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
+        .about div {
+            flex: 1;
+        }
+
         /* MOBILE FIX */
-        @media (max-width: 768px) {
+
+        @media screen and (max-width: 768px) {
+
+            .section {
+                padding: 60px 20px;
+            }
+
             .about {
-                flex-direction: column;
-                gap: 25px;
+                display: block !important;
             }
 
             .about img {
-                width: 100%;
-                border-radius: 20px;
+                width: 100% !important;
+                max-width: 100%;
+                margin-bottom: 25px;
             }
 
             .about div {
@@ -128,9 +142,15 @@
             }
 
             .about p {
-                font-size: 1rem;
-                line-height: 1.9;
+                width: 100%;
+                margin: 0;
                 text-align: justify;
+                line-height: 1.9;
+                font-size: 1rem;
+            }
+
+            .title {
+                margin-bottom: 20px;
             }
         }
 
@@ -235,51 +255,122 @@
             }
         }
 
-        /* fade-in animation */
-        .message.reveal {
-            animation: fadeUp 1.5s ease forwards;
-        }
+        /* =========================
+MOBILE FIXES ONLY
+Add right before 
+    </style>
+    ========================= */
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
+    @media screen and (max-width: 768px) {
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    ```
+    /* Better spacing on phones */
+    .section {
+    padding: 60px 20px;
+    }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #003845;
-            color: white;
-        }
+    /* Hero text */
+    .hero h1 {
+    font-size: 2.5rem;
+    }
 
-        /* BUBBLES */
-        .bubble {
-            position: fixed;
-            bottom: -20px;
-            background: #00bcd4;
-            border-radius: 50%;
-            animation: float 7s linear infinite;
-        }
+    /* ABOUT SECTION */
+    .about {
+    display: block !important;
+    }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-                opacity: 0.7
-            }
+    .about img {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 25px auto;
+    }
 
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0
-            }
-        }
+    .about div {
+    width: 100%;
+    }
+
+    .about p {
+    width: 100%;
+    text-align: justify;
+    line-height: 1.9;
+    margin: 0;
+    }
+
+    /* Magazine cards */
+    .grid {
+    grid-template-columns: 1fr;
+    }
+
+    .card img {
+    height: auto;
+    }
+
+    /* Videos */
+    .video-box {
+    min-width: 100%;
+    }
+
+    /* Message section */
+    .message {
+    padding: 60px 20px;
+    }
+
+    #loveText {
+    font-size: 1rem;
+    min-height: auto;
+    }
+    ```
+
+    }
+
+
+    /* fade-in animation */
+    .message.reveal {
+    animation: fadeUp 1.5s ease forwards;
+    }
+
+    @keyframes fadeUp {
+    from {
+    opacity: 0;
+    transform: translateY(40px);
+    }
+
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+
+    /* FOOTER */
+    footer {
+    text-align: center;
+    padding: 30px;
+    background: #003845;
+    color: white;
+    }
+
+    /* BUBBLES */
+    .bubble {
+    position: fixed;
+    bottom: -20px;
+    background: #00bcd4;
+    border-radius: 50%;
+    animation: float 7s linear infinite;
+    }
+
+    @keyframes float {
+    0% {
+    transform: translateY(0);
+    opacity: 0.7
+    }
+
+    100% {
+    transform: translateY(-100vh);
+    opacity: 0
+    }
+    }
     </style>
 </head>
 
