@@ -153,9 +153,14 @@
         }
 
         video {
+            transition: .5s;
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        video:hover {
+            transform: scale(1.03);
         }
 
         .message {
@@ -220,7 +225,75 @@
             color: white;
         }
 
-        /* SINGLE CLEAN MOBILE BLOCK (FIXED DUPLICATES) */
+        .dark {
+    background: #07151d;
+    color: white;
+}
+
+.dark .love-box,
+.dark .card,
+.dark .about div {
+    background: #10232d;
+    color: white;
+}
+
+.dark .title {
+    color: #6ee7f5;
+}
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visualizer {
+            margin-top: 55px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 15px;
+        }
+
+        .visualizer span {
+    width: 6px;
+    height: 40px;
+    background: white;
+    transform-origin: bottom;
+    animation: bounce 1s infinite ease-in-out;
+       }
+
+        .visualizer span:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .visualizer span:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        .visualizer span:nth-child(4) {
+            animation-delay: .6s;
+        }
+
+        .visualizer span:nth-child(5) {
+            animation-delay: .8s;
+        }
+
+        @keyframes bounce {
+            0%,100% {
+        transform: scaleY(0.4);
+           }
+
+    50% {
+        transform: scaleY(1);
+         }
+        }
+
         @media screen and (max-width: 768px) {
 
             .section {
@@ -277,7 +350,17 @@
         <div>
             <h1 id="typewriter"></h1>
             <p>A calm ocean of memories 🌊💙</p>
+            <h4 id="counter"></h4>
             <button class="btn-main" onclick="toggleMusic()">🎵 Play / Pause Music</button>
+
+            <button class="btn-main" onclick="toggleTheme()">🌙 Dark Mode</button>
+            <div class="visualizer">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
 
@@ -299,7 +382,7 @@
     </div>
 
     <!-- LOVE THOUGHTS -->
-    <div class="section">
+    <div class="section hidden">
         <h2 class="title">Sangara's Take 💭</h2>
         <div class="love-box">
             <p>Some people enter your life quietly, but they stay in your thoughts loudly. Angel is that kind of person.
@@ -311,7 +394,7 @@
             <p>And maybe that is what makes it special… she does not try to be unforgettable. She just is.</p>
         </div>
     </div>
-    <div class="section">
+    <div class="section hidden">
         <h2 class="title">It's just like seeing her for the first time 🌊</h2>
         <div class="grid">
             <div class="card"><img src="images/angel4.jpg"></div>
@@ -323,7 +406,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section hidden">
         <h2 class="title">She looks just like a dream🎥</h2>
 
         <div class="video-row">
@@ -336,20 +419,24 @@
 
             <div class="video-box">
                 <video controls>
-                    <source src="videos/video2.mp4" type="video/mp4">
+                    <source src="videos/video23.mp4" type="video/mp4">
                 </video>
             </div>
 
         </div>
     </div>
 
-    <div class="section message" id="messageBox">
+    <div class="section message hidden" id="messageBox">
         <h2>Message 💌</h2>
         <p id="loveText">Some people feel like peace without even trying. Angel is that kind of presence- quiet, warm
             and unforgettable.</p>
         <h3 class="signature">— Always yours 💙</h3>
     </div>
+    <div id="imageModal" onclick="closeModal()"
+        style="display:none;position:fixed; top:0;left:0; width:100%; height:100%;  background:rgba(0,0,0,.9);justify-content:center; align-items:center;z-index:9999;">
 
+        <img id="modalImg" style="max-width:90%;max-height:90%;border-radius:20px;">
+    </div>
     <footer>
         Made with calm love. Clear definition of how I feel about her 🌊💙 — 2026
     </footer>
@@ -390,9 +477,22 @@
             setTimeout(() => b.remove(), 7000);
         }, 400);
 
-        const loveMessage =
-            "Some people feel like peace without trying. Angel is that kind of presence.";
+        const quotes = [
 
+            "Some people feel like peace without trying. Angel is that kind of presence.",
+
+            "The calm in my chaos 💙",
+
+            "Human medicine.",
+
+            "A rare soul in a loud world.",
+
+            "The best part of ordinary days."
+
+        ];
+
+        const loveMessage =
+            quotes[Math.floor(Math.random() * quotes.length)];
         let j = 0;
         function typeLove() {
             if (j < loveMessage.length) {
@@ -404,6 +504,53 @@
         window.addEventListener("load", () => {
             setTimeout(typeLove, 800);
         });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
+
+        document.querySelectorAll(".hidden").forEach(el => {
+            observer.observe(el);
+        });
+        const startDate = new Date("2025-01-01");
+
+        function updateCounter() {
+            const diff = new Date() - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            document.getElementById("counter").innerHTML =
+                days + " days of memories 💙";
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000);
+
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+
+        document.querySelectorAll(".card img").forEach(img => {
+
+            img.addEventListener("click", () => {
+
+                document.getElementById("modalImg").src = img.src;
+
+                document.getElementById("imageModal").style.display = "flex";
+
+            });
+
+        });
+
+        function closeModal() {
+
+            document.getElementById("imageModal").style.display = "none";
+
+        }
     </script>
 
 </body>
