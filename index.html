@@ -226,20 +226,20 @@
         }
 
         .dark {
-    background: #07151d;
-    color: white;
-}
+            background: #07151d;
+            color: white;
+        }
 
-.dark .love-box,
-.dark .card,
-.dark .about div {
-    background: #10232d;
-    color: white;
-}
+        .dark .love-box,
+        .dark .card,
+        .dark .about div {
+            background: #10232d;
+            color: white;
+        }
 
-.dark .title {
-    color: #6ee7f5;
-}
+        .dark .title {
+            color: #6ee7f5;
+        }
 
         .hidden {
             opacity: 0;
@@ -261,12 +261,12 @@
         }
 
         .visualizer span {
-    width: 6px;
-    height: 40px;
-    background: white;
-    transform-origin: bottom;
-    animation: bounce 1s infinite ease-in-out;
-       }
+            width: 6px;
+            height: 40px;
+            background: white;
+            transform-origin: bottom;
+            animation: bounce 1s infinite ease-in-out;
+        }
 
         .visualizer span:nth-child(2) {
             animation-delay: .2s;
@@ -285,13 +285,15 @@
         }
 
         @keyframes bounce {
-            0%,100% {
-        transform: scaleY(0.4);
-           }
 
-    50% {
-        transform: scaleY(1);
-         }
+            0%,
+            100% {
+                transform: scaleY(0.4);
+            }
+
+            50% {
+                transform: scaleY(1);
+            }
         }
 
         @media screen and (max-width: 768px) {
@@ -441,14 +443,7 @@
         Made with calm love. Clear definition of how I feel about her 🌊💙 — 2026
     </footer>
 
-    <audio id="music" loop>
-        <source src="music/Frank Ocean Moon River.mp3">
-
-    </audio>
-    <audio id="music2" loop>
-        <source src="music/Sonder What You Heard.mp3">
-    </audio>
-
+    <audio id="player"></audio>
     <script>
         let i = 0;
         const text = "Angel 💙";
@@ -461,12 +456,12 @@
         }
         type();
 
-        let playing = false;
-        function toggleMusic() {
-            const m = document.getElementById("music");
-            if (!playing) { m.play(); playing = true; }
-            else { m.pause(); playing = false; }
-        }
+        // let playing = false;
+        // function toggleMusic() {
+        //     const m = document.getElementById("music");
+        //     if (!playing) { m.play(); playing = true; }
+        //     else { m.pause(); playing = false; }
+        // }
 
         setInterval(() => {
             const b = document.createElement("div");
@@ -516,7 +511,7 @@
         document.querySelectorAll(".hidden").forEach(el => {
             observer.observe(el);
         });
-        const startDate = new Date("2025-01-01");
+        const startDate = new Date("2025-10-06");
 
         function updateCounter() {
             const diff = new Date() - startDate;
@@ -550,6 +545,40 @@
 
             document.getElementById("imageModal").style.display = "none";
 
+        }
+
+        const songs = [
+            "music/Frank Ocean Ivy.mp3",
+            "music/Jungle.mp3",
+            "music/Mac Miller My Favorite Part feat Ariana Grande.mp3",
+            "music/Frank Ocean Moon River.mp3",
+            "music/Childish Gambino Letter Home.mp3",
+            "music/Drake Ft The Dream Shut It Down.mp3"
+        ];
+
+        let currentSong = 0;
+        const player = document.getElementById("player");
+
+        player.src = songs[currentSong];
+
+        player.addEventListener("ended", () => {
+            currentSong++;
+            if (currentSong >= songs.length) currentSong = 0;
+
+            player.src = songs[currentSong];
+            player.play();
+        });
+
+        let playing = false;
+
+        function toggleMusic() {
+            if (!playing) {
+                player.play();
+                playing = true;
+            } else {
+                player.pause();
+                playing = false;
+            }
         }
     </script>
 
