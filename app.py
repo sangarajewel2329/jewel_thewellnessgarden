@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+from flask_cors import CORS
 
 # ============================================================
 # LOAD ENVIRONMENT VARIABLES
@@ -10,6 +11,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
 
 # ============================================================
@@ -401,4 +403,4 @@ And occasionally be just a little bit cheesy. 💙
 # ============================================================
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
